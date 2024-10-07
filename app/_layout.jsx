@@ -2,6 +2,7 @@ import React from 'react'
 import { SplashScreen, Stack } from 'expo-router' 
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react'
+import GlobalProvider from '../context/GlobalProvider'
 
 import poppinBlack from '../assets/fonts/Poppins-Black.ttf'
 import poppinBold from '../assets/fonts/Poppins-Bold.ttf'
@@ -34,12 +35,14 @@ const RootLayout = () => {
   if (!fontsLoaded && !error) return null;
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }}/>
-      <Stack.Screen name="(auth)" options={{ headerShown: false }}/>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
-      {/* <Stack.Screen name="search/[query]" options={{ headerShown: false }}/> */}
-    </Stack>
+    <GlobalProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }}/>
+        <Stack.Screen name="(auth)" options={{ headerShown: false }}/>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
+        {/* <Stack.Screen name="search/[query]" options={{ headerShown: false }}/> */}
+      </Stack>
+    </GlobalProvider>
   )
 }
 

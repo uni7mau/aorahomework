@@ -14,7 +14,8 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.uni7mau.aora"
+      "bundleIdentifier": "com.uni7mau.aora",
+      "packages": "com.jsm.aorahomework"
     },
     "android": {
       "adaptiveIcon": {
