@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SplashScreen, Stack } from 'expo-router' 
 import { useFonts } from 'expo-font'
-import { useEffect } from 'react'
 import GlobalProvider from '../context/GlobalProvider'
+
+import "react-native-url-polyfill/auto" //SDK appwrite
 
 import poppinBlack from '../assets/fonts/Poppins-Black.ttf'
 import poppinBold from '../assets/fonts/Poppins-Bold.ttf'
