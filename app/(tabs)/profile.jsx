@@ -35,7 +35,7 @@ const Profile = () => {
           <VideoCard video={item}/>
         )}
         ListHeaderComponent={() => (
-          <View className="w-full justify-end items-center mt-6 mb-12 px-4">
+          <View className="w-full justify-end items-center mt-6 mb-2 px-4">
             <TouchableOpacity
               className="w-full items-end mb-10"
               onPress={ logout }
