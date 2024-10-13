@@ -60,3 +60,4 @@ export default function App() {
 // Set-ExecutionPolicy Restricted
 // Set-ExecutionPolicy RemoteSigned -Scope CurrentUser - X
 // eas update:configure
+// npm install expo@latest
