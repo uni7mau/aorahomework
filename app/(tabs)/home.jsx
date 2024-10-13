@@ -12,13 +12,15 @@ import VideoCard from '../../components/VideoCard'
 import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
+  const { user, setUser, setIsLoggedIn } = useGlobalContext()
+
   const { data: posts, refetch } = useAppwrite(getAllPosts)
   const { data: latestPosts } = useAppwrite(getLatestPosts)
 
   const [refreshing, setRefreshing] = useState(false)
-  
   const onRefresh = async () => {
     setRefreshing(true)
     await refetch()
@@ -41,7 +43,7 @@ const Home = () => {
                   Welcome Back
                 </Text>
                 <Text className="text-2xl font-psemibold text-white">
-                  JSMastery
+                  {user?.username}
                 </Text>
               </View>
 

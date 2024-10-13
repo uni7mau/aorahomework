@@ -21,7 +21,7 @@ const VideoCard = ({ video: {title, thumbnail, video, creator: { username, avata
             <Text className="text-xs text-gray-100 font-pregular" numberOfLines={ 1 }>{username}</Text>
           </View>
         </View>
-        <View className="pt-2">
+        <View className="py-2">
           <Image
             source={icons.menu}
             className="w-5 h-5"

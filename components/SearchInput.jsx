@@ -6,9 +6,9 @@ import { icons } from '../constants'
 
 const SearchInput = ({ initialsQuery }) => {
   const pathName = usePathname()
-  const [query, setQuery] = useState( initialsQuery || '')
+  const [query, setQuery] = useState(initialsQuery || '')
   return (
-    <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center flex flex-row space-x-4 px-4">
+    <View className="border-2 border-black-200 w-full h-16 bg-black-100 rounded-2xl focus:border-secondary items-center flex flex-row space-x-4 pl-4">
         <TextInput
           className="flex-1 text-white mt-0.5 text-base font-pregular"
           value={query}
@@ -17,6 +17,7 @@ const SearchInput = ({ initialsQuery }) => {
           onChangeText={(e) => setQuery(e)}
         />
         <TouchableOpacity
+          className="w-20 h-full rounded-[50%] items-center justify-center"
           onPress={() => {
             if (!query) {
               return Alert.alert('Missing query', "Please input something to search results across database ")
