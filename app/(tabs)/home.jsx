@@ -9,7 +9,7 @@ import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
 import VideoCard from '../../components/VideoCard'
 
-import { getAllPosts, getLatestPosts } from '../../lib/appwrite'
+import { getAllPosts, getNewestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
 
 import { useGlobalContext } from '../../context/GlobalProvider'
@@ -18,7 +18,7 @@ const Home = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext()
 
   const { data: posts, refetch } = useAppwrite(getAllPosts)
-  const { data: latestPosts } = useAppwrite(getLatestPosts)
+  const { data: newestPosts } = useAppwrite(getNewestPosts)
 
   const [refreshing, setRefreshing] = useState(false)
   const onRefresh = async () => {
@@ -60,9 +60,9 @@ const Home = () => {
 
             <View className="w-full flex-1 pt-5 pb-8">
               <Text className="text-lg font-pregular text-gray-100 mb-3">
-                Latest Videos
+                Just Uploading
               </Text>
-              <Trending posts={ latestPosts ?? []} />
+              <Trending posts={ newestPosts ?? []} />
             </View>
           </View>
         )}

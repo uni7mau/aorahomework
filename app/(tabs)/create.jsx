@@ -1,15 +1,18 @@
-import { Text, TouchableOpacity, View, Image } from 'react-native'
+import { Text, TouchableOpacity, View, Image, Alert, ScrollView } from 'react-native'
+import * as ImagePicker from 'expo-image-picker';
+import { Video, ResizeMode } from 'expo-av'
 import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { ScrollView } from 'react-native'
+import { router } from 'expo-router'
 
 import FormField from "../../components/FormField"
-import { Video, ResizeMode } from 'expo-av'
-import { icons } from '../../constants'
-
 import CustomButton from '../../components/CustomButton'
+import { icons } from '../../constants'
+import { createVideo } from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Create = () => {
+  const { user } = useGlobalContext()
   const [upLoading, setUpLoading] = useState(false)
   const [form, setForm] = useState({
     title: "",
@@ -19,11 +22,45 @@ const Create = () => {
   })
 
   const openPicker = async (selectType) => {
-    
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: selectType === 'image' ? ImagePicker.MediaTypeOptions.Images : ImagePicker.MediaTypeOptions.Videos,
+      aspect: [4, 3],
+      quality: 1,
+    })
+    if (!result.canceled) {
+      if (selectType === 'image') {
+        setForm({ ...form, thumbnail: result.assets[0]})
+      }
+      if (selectType === 'video') {
+        setForm({ ...form, video: result.assets[0]})
+      }
+    }
   }
 
-  const submit = () => {
+  const submit = async () => {
+    if (!form.prompt || !form.title || !form.thumbnail || !form.video) {
+      Alert.alert('Please fill in all the fields')
+    }
 
+    setUpLoading(true)
+
+    try {
+      await createVideo({
+        ...form, userId: user.$id
+      })
+      
+      Alert.alert('Success', 'Post uploaded successfully')
+      router.push('/home')
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    } finally {
+      setForm({
+        title: '',
+        video: null,
+        thumbnail: null,
+        prompt: ''
+      })
+    }
   }
 
   return (
@@ -52,9 +89,7 @@ const Create = () => {
               <Video
                 source={{ uri: form.video.uri }}
                 className="w-full h-64 rounded-2xl"
-                useNativeControls
                 resizeMode={ResizeMode.COVER}
-                isLooping
               />
             ) : (
               <View className="w-full h-40 px-4 bg-black-100 rounded-2xl justify-center items-center">
