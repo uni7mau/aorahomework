@@ -7,8 +7,6 @@ import { images } from '../constants'
 import CustomButton from '../components/CustomButton'
 import { useGlobalContext } from '../context/GlobalProvider'
 
-
-
 export default function App() {
   const { isLoading, isLoggedIn } = useGlobalContext();
   if (!isLoading && isLoggedIn) return <Redirect href="/home"/>;
@@ -18,9 +16,9 @@ export default function App() {
       <ScrollView contentContainerStyle={{ height: '100%' }}>
         <View className="w-full min-h-[85vh] justify-center items-center px-4">
           <Image
-             source={images.logo}
-             className="w-[130px] h-[84px]"
-             resizeMode='contain'
+            source={images.logo}
+            className="w-[130px] h-[84px]"
+            resizeMode='contain'
           />
           <Image
             source={images.cards}
@@ -44,10 +42,7 @@ export default function App() {
         </View>
       </ScrollView>
 
-      <StatusBar
-        backgroundColor='#161622'
-        style={'light'}
-      />
+      <StatusBar backgroundColor='#161622' style='light'/>
     </SafeAreaView>
   )
 }

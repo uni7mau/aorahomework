@@ -11,11 +11,10 @@ import VideoCard from '../../components/VideoCard'
 
 import { getAllPosts, getNewestPosts } from '../../lib/appwrite'
 import useAppwrite from '../../lib/useAppwrite'
-
 import { useGlobalContext } from '../../context/GlobalProvider'
 
 const Home = () => {
-  const { user, setUser, setIsLoggedIn } = useGlobalContext()
+  const { user } = useGlobalContext()
 
   const { data: posts, refetch } = useAppwrite(getAllPosts)
   const { data: newestPosts } = useAppwrite(getNewestPosts)
@@ -58,8 +57,8 @@ const Home = () => {
 
             <SearchInput />
 
-            <View className="w-full flex-1 pt-5 pb-8">
-              <Text className="text-lg font-pregular text-gray-100 mb-3">
+            <View className="w-full flex-1">
+              <Text className="text-lg font-pregular text-gray-100">
                 Just Uploading
               </Text>
               <Trending posts={ newestPosts ?? []} />

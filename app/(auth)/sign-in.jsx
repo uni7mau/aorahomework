@@ -1,4 +1,4 @@
-import { ScrollView, Text, View, Image, Alert } from 'react-native'
+import { ScrollView, Text, View, Image, Alert, KeyboardAvoidingView } from 'react-native'
 import React, { useState } from 'react'
 import { Link, router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -8,6 +8,7 @@ import { getCurrentUser, signIn } from '../../lib/appwrite'
 import { useGlobalContext } from '../../context/GlobalProvider'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
+
 
 const SignIn = () => {
   const { setUser, setIsLoggedIn } = useGlobalContext()
@@ -39,7 +40,7 @@ const SignIn = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full flex justify-center min-h-[77vh] px-4 my-6">
+        <KeyboardAvoidingView behavior='padding' style="w-full flex justify-center min-h-[77vh] px-4 my-6">
           <Image 
             source={images.logo}
             resizeMode="contain"
@@ -72,7 +73,7 @@ const SignIn = () => {
             </Text>
             <Link href="/sign-up" className="text-sm font-psemibold text-secondary underline">Sign up</Link>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
   )

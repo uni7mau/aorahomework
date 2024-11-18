@@ -9,6 +9,8 @@ import CustomButton from '../../components/CustomButton'
 import { createUser } from '../../lib/appwrite'
 import { useGlobalContext } from '../../context/GlobalProvider'
 
+import { KeyboardAvoidingView } from 'react-native'
+
 const SignUp = () => {
   const { setUser, setIsLoggedIn } = useGlobalContext()
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,8 +40,8 @@ const SignUp = () => {
   return (
     <SafeAreaView className="bg-primary h-full">
       <ScrollView>
-        <View className="w-full flex justify-center min-h-[77vh] px-4 my-10">
-          <Image 
+        <KeyboardAvoidingView behavior='padding' style="w-full flex justify-center min-h-[77vh] px-4 my-10">
+          <Image
             source={images.logo}
             resizeMode="contain"
             className="w-[115px] h-[34px]"
@@ -76,7 +78,7 @@ const SignUp = () => {
             </Text>
             <Link href="/sign-in" className="text-sm font-psemibold text-secondary underline">Sign in</Link>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ScrollView>
     </SafeAreaView>
   )

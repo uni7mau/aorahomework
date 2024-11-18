@@ -30,9 +30,9 @@ const VideoCard = ({ video: {title, thumbnail, video, creator: { username, avata
         </View>
       </View>
       {play ? (
-        <Video 
+        <Video
           source={{ uri: video }}
-          className="w-52 h-72 rounded-xl mt-3"
+          className="w-full h-60 rounded-xl mt-3"
           resizeMode={ResizeMode.CONTAIN}
           useNativeControls
           onPlaybackStatusUpdate={(status) => {
@@ -44,12 +44,12 @@ const VideoCard = ({ video: {title, thumbnail, video, creator: { username, avata
       ) : (
         <TouchableOpacity
           className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
-          activeOpacity={ 0.7 }
+          activeOpacity={0.7}
           onPress={() => setPlay(true)}
         >
           <Image
             source={{ uri:thumbnail }}
-            className="w-full h-full rounded-xl mt-3"
+            className="w-full h-60 rounded-xl mt-3"
             resizeMode='cover'
           />
           <Image

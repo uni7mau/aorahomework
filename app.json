@@ -46,6 +46,7 @@
     "updates": {
       "url": "https://u.expo.dev/3e3cc9ab-233e-4b4f-b9e0-776bd9905978"
     }
+  
   },
   "plugins": [
     "expo-updates",
